@@ -12,9 +12,10 @@ export const login = creds => dispatch => {
             localStorage.setItem("token", res.data.payload);
             dispatch({ type: LOGIN_SUCCESS, payload: res.data })
         })
-        .catch(err => 
+        .catch(err => {
             dispatch({ type: LOGIN_FAILURE, error: err.message })
-        );
+        }
+    );
 
 };
 
@@ -31,5 +32,20 @@ export const fetch = () => dispatch => {
         })
         .catch(err => {
             dispatch({ type: FETCH_FAILURE, payload: err.message});
+        })
+}
+
+export const ADD_START = "ADD_START";
+export const ADD_SUCCESS = "ADD_SUCCESS";
+export const ADD_FAILURE = "ADD_FAILURE";
+
+export const addFriend = friend => dispatch => {
+    dispatch({ type: ADD_START })
+    axiosWithAuth().post('http://localhost:5000/api/friends', friend)
+        .then(res => {
+            dispatch({ type: ADD_SUCCESS, payload: res.data })
+        })
+        .catch(err => {
+            dispatch({ type: ADD_FAILURE, payload: err.message })
         })
 }

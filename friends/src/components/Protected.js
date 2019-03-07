@@ -2,6 +2,8 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetch } from '../actions'
+import Friend from './Friend';
+import AddFriend from './AddFriend';
 
 class Protected extends React.Component {
 
@@ -12,7 +14,8 @@ class Protected extends React.Component {
     render() {
         return (
             <>
-            {this.props.friends.map(friend => <p>{friend.name}</p>)}
+            <AddFriend />
+            {this.props.friends.map(friend => <Friend friend={friend} key={friend.id} />)}
             </>
         );
     }
