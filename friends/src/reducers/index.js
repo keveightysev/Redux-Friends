@@ -1,3 +1,4 @@
+import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE} from '../actions';
 
 const initialState = {
     friends: [],
@@ -11,6 +12,8 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
     switch(action.type) {
+        case LOGIN_START:
+            
         default:
             return state;
     }
