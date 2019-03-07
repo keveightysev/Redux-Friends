@@ -6,7 +6,10 @@ import { LOGIN_START,
     FETCH_FAILURE,
     ADD_START,
     ADD_SUCCESS,
-    ADD_FAILURE } from '../actions';
+    ADD_FAILURE,
+    DELETE_START,
+    DELETE_SUCCESS,
+    DELETE_FAILURE } from '../actions';
 
 const initialState = {
     friends: [],
@@ -68,6 +71,23 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 savingFriends: false,
+                error: action.payload,
+            }
+        case DELETE_START:
+            return {
+                ...state,
+                deletingFriends: true
+            }
+        case DELETE_SUCCESS:
+            return {
+                ...state,
+                deletingFriends: false,
+                friends: action.payload,
+            }
+        case DELETE_FAILURE:
+            return {
+                ...state,
+                deletingFriends: false,
                 error: action.payload,
             }
         default:
