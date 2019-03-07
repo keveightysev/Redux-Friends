@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+import Login from './components/Login';
+import PrivateRoute from './components/PrivateRoute';
+import Protected from './components/Protected';
+
 
 class App extends Component {
   render() {
