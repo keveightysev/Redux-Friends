@@ -1,11 +1,27 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetch } from '../actions'
 
-const Protected = () => {
-    return (
-        <>
-        <h2>Fun Stuffs</h2>
-        </>
-    );
+class Protected extends React.Component {
+
+    componentDidMount() {
+        this.props.fetch();
+    }
+
+    render() {
+        return (
+            <>
+            {this.props.friends.map(friend => <p>{friend.name}</p>)}
+            </>
+        );
+    }
 };
 
-export default Protected;
+const mapStateToProps = state => {
+    return {
+        friends: state.friends,
+    }
+}
+
+export default withRouter(connect(mapStateToProps, { fetch })(Protected));
